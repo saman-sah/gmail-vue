@@ -67,6 +67,8 @@
             class="-ml-2 mr-2"
             icon-name="apps"
           />
+
+          <UserComponent />
         </div>
       </div>
     </div>
@@ -75,6 +77,7 @@
 
 <script setup>
 import IconComponent from '@/components/IconComponent.vue';
+import UserComponent from '@/components/UserComponent.vue';
 import MenuIcon from 'vue-material-design-icons/Menu.vue'
 import MagnifyIcon from 'vue-material-design-icons/Magnify.vue'
 import TuneIcon from 'vue-material-design-icons/Tune.vue'
@@ -83,4 +86,6 @@ import CogOutlineIcon from 'vue-material-design-icons/CogOutline.vue'
 import AppsIcon from 'vue-material-design-icons/Apps.vue'
 // import ArrowLeftIcon from 'vue-material-design-icons/ArrowLeft.vue'
 // import TrashCanOutlineIcon from 'vue-material-design-icons/TrashCanOutline.vue'
+
+
 </script>
