@@ -44,7 +44,6 @@ import PencilOutlineIcon from 'vue-material-design-icons/PencilOutline.vue'
 import IconComponent from '@/components/IconComponent.vue'
 // import HelpIcon from 'vue-material-design-icons/Help.vue'
 // import ArrowLeftIcon from 'vue-material-design-icons/ArrowLeft.vue'
-// import TrashCanOutlineIcon from 'vue-material-design-icons/TrashCanOutline.vue'
 
 const newEmialOpen = ref(false)
 </script>
