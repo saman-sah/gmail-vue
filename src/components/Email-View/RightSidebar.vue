@@ -23,22 +23,28 @@
 <script setup>
 import IconComponent from '../IconComponent.vue'
 import PlusIcon from 'vue-material-design-icons/Plus.vue'
+
+import GoogleKeep from '../../../public/img/GoogleKeep.png'
+import GoogleTasks from '../../../public/img/GoogleTasks.png'
+import GoogleCalendar from '../../../public/img/GoogleCalendar.png'
+import GoogleContacts from '../../../public/img/GoogleContacts.png'
+
 const images = [
   {
     id: 1,
-    path: 'img/GoogleCalendar.png'
+    path: GoogleCalendar
   },
   {
     id: 2,
-    path: 'img/GoogleKeep.png'
+    path: GoogleKeep
   },
   {
     id: 3,
-    path: 'img/GoogleTasks.png'
+    path: GoogleTasks
   },
   {
     id: 4,
-    path: 'img/GoogleContacts.png'
+    path: GoogleContacts
   },
 ]
 </script>

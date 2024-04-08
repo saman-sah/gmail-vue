@@ -4,25 +4,27 @@
     v-for="(item, index) in menuItems"
     :key="index"
   >
-    <div :class="[
-        !item.status || 'bg-blue-100',
-        'w-[250px] flex justify-between items-center px-4 rounded-r-full my-2 cursor-pointer'
-      ]"
-      @click="item.click"
-    >
-      <div class="flex items-center justify-start">
-        <IconComponent
-          :icon="item.icon"
-          icon-size="19"
-        />
-        <div class="text-sm pl-2 font-semibold">
-          {{ item.title }}
+    <router-link :to="item.to">
+      <div :class="[
+          !item.status || 'bg-blue-100',
+          'w-[250px] flex justify-between items-center px-4 rounded-r-full my-2 cursor-pointer'
+        ]"
+        @click="item.click"
+      >
+        <div class="flex items-center justify-start">
+          <IconComponent
+            :icon="item.icon"
+            icon-size="19"
+          />
+          <div class="text-sm pl-2 font-semibold">
+            {{ item.title }}
+          </div>
+        </div>
+        <div class="text-xs font-semibold">
+          26
         </div>
       </div>
-      <div class="text-xs font-semibold">
-        26
-      </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -40,31 +42,32 @@ const menuItems = [
     icon: InboxIcon,
     title: 'Inbox',
     status: true,
-    click: () => selectItemMenu('inbox')
+    to: '/email'
   },
   {
     icon: StarOutlineIcon,
     title: 'Starred',
-    status: false
+    status: false,
+    to: '/email'
   },
   {
     icon: ClockOutlineIcon,
     title: 'Snoozed',
-    status: false
+    status: false,
+    to: '/email'
   },
   {
     icon: SentOutlineIcon,
     title: 'Sent',
-    status: false
+    status: false,
+    to: '/email'
   },
   {
     icon: FileOutlineIcon,
     title: 'Drafts',
-    status: false
+    status: false,
+    to: '/email'
   }
 ]
 
-const selectItemMenu = (component) => {
-  console.log(component);
-}
 </script>
