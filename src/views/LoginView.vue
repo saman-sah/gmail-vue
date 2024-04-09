@@ -17,13 +17,12 @@
 </template>
 
 <script setup>
-import axios from 'axios'
+import { useUserStore } from '@/store/userStore'
 import GmailLogin from '../../public/img/GmailLogin.png'
 
-const callback = async(response) => {
-  let res = await axios.post('http://localhost:4001/api/google-login', {
-    token: response.credential
-  })
-  console.log('res', res);
+
+const userStore = useUserStore()
+const callback = async (response) => {
+  await userStore.getUserDetailsFromGoogle(response)
 }
 </script>
