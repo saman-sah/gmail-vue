@@ -4,12 +4,7 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:4001'
 
-export const useUserStore = defineStore('user', {
-  persist: {
-    enabled: true,
-    properties: ['user']
-  }
-}, () => {
+export const useUserStore = defineStore('user', () => {
   const user = reactive({
     sub: '',
     email: '',

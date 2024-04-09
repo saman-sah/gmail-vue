@@ -4,7 +4,7 @@
       @click="openMenu = !openMenu"
       data-tooltip-target="user"
       data-tooltip-placement="bottom"
-      :src="userStore.user.picture" 
+      :src="userStore.user.picture ? userStore.user.picture : 'https://placehold.co/40x40'" 
       alt="username"
       class="rounded-full w-8 cursor-pointer"
     >
@@ -19,10 +19,13 @@
       <div class="text-gray-300">{{ userStore.user.email }}</div>
     </div>
 
-    <div v-show="openMenu" class="absolute z-10 w-80 right-2 bg-white top-14 rounded-lg">
+    <div 
+      v-show="openMenu" 
+      class="absolute z-10 w-80 right-2 bg-white top-14 rounded-lg shadow-lg"
+    >
       <div class="w-full flex justify-center">
         <img
-          :src="userStore.user.picture" 
+          :src="userStore.user.picture ? userStore.user.picture : 'https://placehold.co/70x70'" 
           :alt="userStore.user.firstName"
           class="rounded-full w-20 mt-4"
         >
@@ -35,6 +38,7 @@
       </div>
       <div class="flex justify-center my-5">
         <button
+          @click="logout"
           class="bg-transparent text-xs text-gray-600 font-semibold py-2 px-4 border border-gray-300 rounded hover:bg-gray-100"
         >
           Sign out of Gmail
@@ -46,9 +50,15 @@
 
 <script setup>
 import { ref } from 'vue'
-
+import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/userStore'
 
-const userStore = useUserStore()
+const router = useRouter()
 const openMenu = ref(false)
+const userStore = useUserStore()
+
+const logout = () => {
+  userStore.logout()
+  setTimeout(() => router.push('/'))
+}
 </script>

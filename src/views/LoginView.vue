@@ -17,12 +17,20 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/userStore'
+
 import GmailLogin from '../../public/img/GmailLogin.png'
 
-
+const router = useRouter()
 const userStore = useUserStore()
+
 const callback = async (response) => {
-  await userStore.getUserDetailsFromGoogle(response)
+  try {
+    await userStore.getUserDetailsFromGoogle(response)
+    setTimeout(() => router.push('/email'))
+  } catch (error) {
+    console.log('error',error);
+  }
 }
 </script>
