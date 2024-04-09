@@ -3,7 +3,7 @@ const app = express()
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const { OAuth2Client } = require('google-auth-library')
-const client = new OAuth2Client('545935096281-fn5gmd20fvktedjmj15su2rkpuq02fm6.apps.googleusercontent.com')
+const client = new OAuth2Client('')
 
 app.use(bodyParser.json())
 app.use(cors())

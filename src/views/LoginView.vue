@@ -28,7 +28,9 @@ const userStore = useUserStore()
 const callback = async (response) => {
   try {
     await userStore.getUserDetailsFromGoogle(response)
+    console.log('userStore.user', userStore.user);
     setTimeout(() => router.push('/email'))
+
   } catch (error) {
     console.log('error',error);
   }
