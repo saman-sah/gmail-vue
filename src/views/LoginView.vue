@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+ import { onMounted } from 'vue'
 import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store/userStore'
 
@@ -25,14 +26,12 @@ import GmailLogin from '../../public/img/GmailLogin.png'
 const router = useRouter()
 const userStore = useUserStore()
 
-const callback = async (response) => {
-  try {
-    await userStore.getUserDetailsFromGoogle(response)
-    console.log('userStore.user', userStore.user);
-    setTimeout(() => router.push('/email'))
+onMounted(() => {
+        setTimeout(() => { router.push('/email') }, 250)
+    })
 
-  } catch (error) {
-    console.log('error',error);
-  }
-}
+    const callback = async (response) => {
+        await userStore.getUserDetailsFromGoogle(response)
+        setTimeout(() => { router.push('/email') }, 250)
+    }
 </script>
