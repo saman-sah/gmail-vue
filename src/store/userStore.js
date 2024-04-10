@@ -11,10 +11,10 @@ export const useUserStore = defineStore('user', () => {
     picture: '',
     firstName: '',
     lastName: '',
-    emails: []
   })
 
   async function getUserDetailsFromGoogle(data) {
+    console.log('data',data);
     let res = await axios.post('/api/google-login', {
       token: data.credential
     })
