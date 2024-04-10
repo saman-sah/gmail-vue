@@ -1,10 +1,14 @@
 <template>
   <div id="MessageRow">
-    <div class="border-b cursor-pointer hover:border-gray-200 hover:border-t hover:border-y-2 hover:border-x">
+    <div :class="[
+        hasViewed ? 'bg-gray-100' : '',
+        'border-b cursor-pointer hover:border-gray-200 hover:border-t hover:border-y-2 hover:border-x'
+      ]"
+    >
       <div class="flex items-center ml-2">
         <div class="flex items-center">
           <IconComponent
-            :icon="CheckboxBlankOutlineIcon"
+            :icon="isSelected ? CheckboxOutlineIcon : CheckboxBlankOutlineIcon"
             icon-color="#636363"
             icon-size="19"
           />
@@ -18,7 +22,7 @@
         <div class="flex items-center w-full">
           <router-link 
             class="w-full"
-            to="email/message"
+            :to="`/email/message/${id}`"
           >
             <div class="flex items-center justify-between">
               <div class="flex items-center w-full">
@@ -46,13 +50,24 @@
 </template>
 
 <script setup>
-import { toRefs, defineProps } from 'vue'
+import { defineProps, defineEmits, toRefs, watch, ref } from "vue"
+
+import CheckboxOutlineIcon from 'vue-material-design-icons/CheckboxOutline.vue'
 import CheckboxBlankOutlineIcon from 'vue-material-design-icons/CheckboxBlankOutline.vue'
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 
 import IconComponent from '@/components/IconComponent.vue'
 
+
+const emit = defineEmits(['selectedId'])
+
+let isSelected = ref(false)
+
 const props= defineProps({
+  id: {
+    type: String,
+    default: ''
+  },
   from: {
     type: String,
     default: ''
@@ -71,5 +86,9 @@ const props= defineProps({
   }
 })
 
-const { from, subject, body, time } = toRefs(props)
+const { id, from, subject, body, time } = toRefs(props)
+
+watch(isSelected, (bool) => {
+    emit('selectedId', { id: id.value, bool: bool})
+})
 </script>

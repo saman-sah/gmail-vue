@@ -26,6 +26,7 @@ export const useUserStore = defineStore('user', () => {
     picture: '',
     firstName: '',
     lastName: '',
+    emails: []
   })
 
   async function getUserDetailsFromGoogle(data) {
@@ -42,7 +43,7 @@ export const useUserStore = defineStore('user', () => {
 
   function getEmailsByEmailAddress() {
 
-    const q = query(collection(db, "emails"), where("toEmail", "==", this.$state.email), orderBy("createdAt", "desc"));
+    const q = query(collection(db, "emails"), where("toEmail", "==", user.email), orderBy("createdAt", "desc"));
 
     onSnapshot(q, 
       (querySnapshot) => {
@@ -61,7 +62,7 @@ export const useUserStore = defineStore('user', () => {
               createdAt: moment(doc.data().createdAt).format("MMM D HH:mm")
             })
         });
-      this.$state.emails = resultArray
+      user.emails = resultArray
     }
     ,(error) => {
       console.log(error)
@@ -92,9 +93,9 @@ export const useUserStore = defineStore('user', () => {
   async function sendEmail(data) {
     try {
       await setDoc(doc(db, "emails/" + uuid()), {
-        firstName: this.$state.firstName,
-        lastName: this.$state.lastName,
-        fromEmail: this.$state.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        fromEmail: user.email,
         toEmail: data.toEmail,
         subject: data.subject,
         body: data.body,
